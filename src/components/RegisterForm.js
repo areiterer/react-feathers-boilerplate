@@ -1,25 +1,66 @@
-import React, {Component} from 'react';
+import React, { Component, PropTypes } from 'react';
 
 class RegisterForm extends Component {
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			username: '',
+			email: '',
+			password: '',
+			confirmPassword: ''
+		};
+
+		this._handleSubmit = this._handleSubmit.bind(this);
+		this._handleChange = this._handleChange.bind(this);
+	}
+
+	_handleChange(event) {
+		this.setState({
+			[event.target.name]: event.target.value
+		})
+	}
+
+	_handleSubmit(event) {
+		// TODO: check password and confirm password
+
+		this.props.onRegister(this.state.username, this.state.email, this.state.password);
+
+		event.preventDefault();
+	}
+
 	render() {
 		return (
-			<form id="register-form">
+			<form id="register-form" onSubmit={this._handleSubmit}>
 				<h2>Registration</h2>
+				<p>{JSON.stringify(this.state)}</p>
 				<div className="form-group">
 					<label htmlFor="inputUsername" className="sr-only">Username</label>
-					<input type="text" id="inputUsername" tabIndex="1" className="form-control" placeholder="Username" required autoFocus />
+					<input type="text" id="inputUsername" name="username" tabIndex="1"
+					       className="form-control" placeholder="Username"
+					       value={this.state.username} onChange={this._handleChange}
+					       required autoFocus/>
 				</div>
 				<div className="form-group">
 					<label htmlFor="inputEmail" className="sr-only">Email address</label>
-					<input type="email" id="inputEmail" tabIndex="2" className="form-control" placeholder="Email address" required />
+					<input type="email" id="inputEmail" name="email" tabIndex="2"
+					       className="form-control" placeholder="Email address"
+					       value={this.state.email} onChange={this._handleChange}
+					       required/>
 				</div>
 				<div className="form-group">
 					<label htmlFor="inputPassword" className="sr-only">Password</label>
-					<input type="password" id="inputPassword" tabIndex="2" className="form-control" placeholder="Password" />
+					<input type="password" id="inputPassword" name="password" tabIndex="2"
+					       className="form-control" placeholder="Password"
+					       value={this.state.password} onChange={this._handleChange}
+					       required/>
 				</div>
 				<div className="form-group">
 					<label htmlFor="inputConfirmPassword" className="sr-only">Confirm Password</label>
-					<input type="password" id="inputConfirmPassword" tabIndex="2" className="form-control" placeholder="Confirm Password" />
+					<input type="password" id="inputConfirmPassword" name="confirmPassword" tabIndex="2"
+					       className="form-control" placeholder="Confirm Password"
+					       value={this.state.confirmPassword} onChange={this._handleChange}
+					       required/>
 				</div>
 				<div className="form-group">
 					<div className="row">
@@ -32,5 +73,9 @@ class RegisterForm extends Component {
 		);
 	}
 }
+
+RegisterForm.propTypes = {
+	onRegister: PropTypes.func.isRequired
+};
 
 export default RegisterForm;
