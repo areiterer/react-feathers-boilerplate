@@ -5,7 +5,6 @@ class RegisterForm extends Component {
 		super(props);
 
 		this.state = {
-			username: '',
 			email: '',
 			password: '',
 			confirmPassword: ''
@@ -24,7 +23,7 @@ class RegisterForm extends Component {
 	_handleSubmit(event) {
 		// TODO: check password and confirm password
 
-		this.props.onRegister(this.state.username, this.state.email, this.state.password);
+		this.props.onRegister(this.state.email, this.state.password);
 
 		event.preventDefault();
 	}
@@ -34,13 +33,6 @@ class RegisterForm extends Component {
 			<form id="register-form" onSubmit={this._handleSubmit}>
 				<h2>Registration</h2>
 				<p>{JSON.stringify(this.state)}</p>
-				<div className="form-group">
-					<label htmlFor="inputUsername" className="sr-only">Username</label>
-					<input type="text" id="inputUsername" name="username" tabIndex="1"
-					       className="form-control" placeholder="Username"
-					       value={this.state.username} onChange={this._handleChange}
-					       required autoFocus/>
-				</div>
 				<div className="form-group">
 					<label htmlFor="inputEmail" className="sr-only">Email address</label>
 					<input type="email" id="inputEmail" name="email" tabIndex="2"

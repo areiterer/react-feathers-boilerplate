@@ -9,8 +9,8 @@ class RegisterPage extends Component {
 		this._onRegistration = this._onRegistration.bind(this);
 	}
 
-	_onRegistration(username, email, password) {
-		console.log('Registered: ' + JSON.stringify({username, email, password}));
+	_onRegistration(email, password) {
+		console.log('Registered: ' + JSON.stringify({email, password}));
 	}
 
 	render() {
