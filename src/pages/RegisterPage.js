@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 
 import RegisterForm from '../components/RegisterForm';
 
+import {app} from '../lib/WebApi';
+
 class RegisterPage extends Component {
 	constructor(props) {
 		super(props);
@@ -10,6 +12,13 @@ class RegisterPage extends Component {
 	}
 
 	_onRegistration(email, password) {
+		const userService = app.service('users');
+		userService.create({
+			email,
+			password
+		}).then((response) => console.log(response));
+
+
 		console.log('Registered: ' + JSON.stringify({email, password}));
 	}
 

@@ -57,7 +57,7 @@ class RegisterForm extends Component {
 				<div className="form-group">
 					<div className="row">
 						<div className="col-sm-6 col-sm-offset-3">
-							<button className="btn btn-lg btn-success btn-block" type="submit">Register now</button>
+							<button className="btn btn-lg btn-success btn-block" type="submit">Register</button>
 						</div>
 					</div>
 				</div>

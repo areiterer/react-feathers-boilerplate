@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 
+import {app} from '../lib/WebApi';
+
 class IndexPage extends Component {
 	render() {
 		return (
@@ -16,6 +18,7 @@ class IndexPage extends Component {
 						<li><Link to="/login">Login</Link></li>
 						<li><Link to="/register">Registration</Link></li>
 					</ol>
+					<button onClick={(event) => app.logout().then((response) => console.log(response))}>Logout</button>
 				</div>
 			</div>
 		);

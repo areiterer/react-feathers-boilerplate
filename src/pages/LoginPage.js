@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-
 import LoginForm from '../components/LoginForm';
+
+import { app } from '../lib/WebApi';
 
 class LoginPage extends Component {
 	constructor(props) {
@@ -9,8 +10,18 @@ class LoginPage extends Component {
 		this._login = this._login.bind(this);
 	}
 
-	_login(username, password, rememberMe) {
-		console.log('Logging in: '+ JSON.stringify({username, password, rememberMe}));
+	static get contextTypes() {
+		return {
+			router: React.PropTypes.object.isRequired
+		}
+	}
+
+	_login(email, password) {
+		app.authenticate({
+			type: 'local',
+			email,
+			password
+		}).then((response) => this.context.router.push('/'));
 	}
 
 	render() {
@@ -18,7 +29,7 @@ class LoginPage extends Component {
 			<div className="container">
 				<div className="row">
 					<div className="col-xs-offset-4 col-xs-4">
-						<LoginForm onLogin={this._login} />
+						<LoginForm onLogin={this._login}/>
 					</div>
 				</div>
 			</div>
