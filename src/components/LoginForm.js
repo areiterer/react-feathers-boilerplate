@@ -6,8 +6,7 @@ class LoginForm extends Component {
 
 		this.state = {
 			email: '',
-			password: '',
-			rememberMe: false
+			password: ''
 		};
 
 		this._handleLogin = this._handleLogin.bind(this);
@@ -16,7 +15,7 @@ class LoginForm extends Component {
 
 	_handleLogin(event) {
 		event.preventDefault();
-		this.props.onLogin(this.state.email, this.state.password, this.state.rememberMe);
+		this.props.onLogin(this.state.email, this.state.password);
 	}
 
 	_handleChange(event) {
@@ -48,12 +47,6 @@ class LoginForm extends Component {
 					       placeholder="Password" name="password"
 					       value={this.state.password} onChange={this._handleChange}
 					       required/>
-				</div>
-				<div className="checkbox">
-					<label>
-						<input type="checkbox" name="rememberMe" checked={this.state.rememberMe}
-						       value="rememberMe" onChange={this._handleChange}/>Remember me
-					</label>
 				</div>
 				<button className="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 			</form>
