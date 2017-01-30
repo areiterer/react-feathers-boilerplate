@@ -1,0 +1,3 @@
+export const SENDING_REQUEST = 'SENDING_REQUEST';
+
+export const SET_LOGIN_STATE = 'SET_LOGIN_STATE';

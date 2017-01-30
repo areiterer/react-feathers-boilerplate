@@ -1,40 +1,29 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import LoginForm from '../components/LoginForm';
 
-import { app } from '../lib/WebApi';
+import { connect } from 'react-redux';
+import * as actions from '../actions/actions';
 
-class LoginPage extends Component {
-	constructor(props) {
-		super(props);
-
-		this._login = this._login.bind(this);
-	}
-
-	static get contextTypes() {
-		return {
-			router: React.PropTypes.object.isRequired
-		}
-	}
-
-	_login(email, password) {
-		app.authenticate({
-			type: 'local',
-			email,
-			password
-		}).then((response) => this.context.router.push('/'));
-	}
-
-	render() {
-		return (
-			<div className="container">
-				<div className="row">
-					<div className="col-xs-offset-4 col-xs-4">
-						<LoginForm onLogin={this._login}/>
-					</div>
-				</div>
+const LoginPage = () => (
+	<div className="container">
+		<div className="row">
+			<div className="col-xs-offset-4 col-xs-4">
+				<LoginForm onLogin={this.props.login}/>
 			</div>
-		);
+		</div>
+	</div>
+);
+
+LoginPage.propTypes = {
+	loggedIn: PropTypes.bool.isRequired,
+	login: PropTypes.func.isRequired
+};
+
+function mapStateToProps(state) {
+	return {
+		loggedIn: state.loggedIn
 	}
 }
 
-export default LoginPage;
+export { LoginPage };
+export const LoginPageContainer = connect(mapStateToProps, actions)(LoginPage);

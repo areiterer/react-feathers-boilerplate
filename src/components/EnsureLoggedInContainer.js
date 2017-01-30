@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { browserHistory } from 'react-router';
 
 import { app } from '../lib/WebApi';
