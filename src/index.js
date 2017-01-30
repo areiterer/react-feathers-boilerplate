@@ -10,10 +10,10 @@ import { Provider } from 'react-redux';
 import rootReducer from './reducers/reducer';
 
 import { AppContainer } from './App';
-import IndexPage from './pages/IndexPage';
-import { LoginPageContainer } from './pages/LoginPage';
-import RegisterPage from './pages/RegisterPage';
-import ArticlesPage from './pages/ArticlesPage';
+import IndexPage from './components/pages/IndexPage';
+import { LoginPageContainer } from './components/pages/LoginPage';
+import RegisterPage from './components/pages/RegisterPage';
+import ArticlesPage from './components/pages/ArticlesPage';
 
 import EnsureLoggedInContainer from './components/EnsureLoggedInContainer';
 

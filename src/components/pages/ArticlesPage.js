@@ -1,13 +1,9 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-class ArticlesPage extends Component {
-	render() {
-		return <div>
+const ArticlesPage = () => (<div>
 			<h2>Articles</h2>
 			<hr />
 			<p>This is the articles page. You are only able to see it, when you are logged in.</p>
-		</div>
-	}
-}
+		</div>);
 
 export default ArticlesPage;

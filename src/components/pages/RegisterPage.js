@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 
-import RegisterForm from '../components/RegisterForm';
+import RegisterForm from '../RegisterForm';
 
-import {app} from '../lib/WebApi';
+import {app} from '../../lib/WebApi';
 
 class RegisterPage extends Component {
 	constructor(props) {
