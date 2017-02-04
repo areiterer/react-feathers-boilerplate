@@ -32,35 +32,28 @@ class RegisterForm extends Component {
 		return (
 			<form id="register-form" onSubmit={this._handleSubmit}>
 				<h2>Registration</h2>
-				<p>{JSON.stringify(this.state)}</p>
 				<div className="form-group">
 					<label htmlFor="inputEmail" className="sr-only">Email address</label>
-					<input type="email" id="inputEmail" name="email" tabIndex="2"
+					<input type="email" id="inputEmail" name="email"
 					       className="form-control" placeholder="Email address"
 					       value={this.state.email} onChange={this._handleChange}
-					       required/>
+					       required autoFocus/>
 				</div>
 				<div className="form-group">
 					<label htmlFor="inputPassword" className="sr-only">Password</label>
-					<input type="password" id="inputPassword" name="password" tabIndex="2"
+					<input type="password" id="inputPassword" name="password"
 					       className="form-control" placeholder="Password"
 					       value={this.state.password} onChange={this._handleChange}
 					       required/>
 				</div>
 				<div className="form-group">
 					<label htmlFor="inputConfirmPassword" className="sr-only">Confirm Password</label>
-					<input type="password" id="inputConfirmPassword" name="confirmPassword" tabIndex="2"
+					<input type="password" id="inputConfirmPassword" name="confirmPassword"
 					       className="form-control" placeholder="Confirm Password"
 					       value={this.state.confirmPassword} onChange={this._handleChange}
 					       required/>
 				</div>
-				<div className="form-group">
-					<div className="row">
-						<div className="col-sm-6 col-sm-offset-3">
-							<button className="btn btn-lg btn-success btn-block" type="submit">Register</button>
-						</div>
-					</div>
-				</div>
+				<button className="btn btn-lg btn-success btn-block" type="submit">Register</button>
 			</form>
 		);
 	}

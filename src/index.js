@@ -12,7 +12,7 @@ import rootReducer from './reducers/reducer';
 import { AppContainer } from './App';
 import IndexPage from './components/pages/IndexPage';
 import { LoginPageContainer } from './components/pages/LoginPage';
-import RegisterPage from './components/pages/RegisterPage';
+import { RegisterPageContainer } from './components/pages/RegisterPage';
 import ArticlesPage from './components/pages/ArticlesPage';
 
 import EnsureLoggedInContainer from './components/EnsureLoggedInContainer';
@@ -36,7 +36,7 @@ ReactDOM.render(
 			<Route path="/" component={ AppContainer }>
 				<IndexRoute component={IndexPage}/>
 				<Route path="login" component={LoginPageContainer}/>
-				<Route path="register" component={RegisterPage}/>
+				<Route path="register" component={RegisterPageContainer}/>
 				<Route component={EnsureLoggedInContainer}>
 					<Route path="articles" component={ArticlesPage}/>
 				</Route>

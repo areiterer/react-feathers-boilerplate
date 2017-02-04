@@ -33,7 +33,7 @@ class LoginForm extends Component {
 	render() {
 		return (
 			<form className="form-signin" onSubmit={this._handleLogin}>
-				<h2 className="form-signin-heading">Please sign in</h2>
+				<h2 className="form-signin-heading">Sign in</h2>
 				<div className="form-group">
 					<label htmlFor="inputEmail" className="sr-only">Email address</label>
 					<input type="email" id="inputEmail" className="form-control"

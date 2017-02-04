@@ -17,6 +17,7 @@ const Header = (props) => (
 				</ul>
 				<ul className="nav navbar-nav navbar-right">
 					<li style={props.loggedIn ? styles.hidden : {}}><Link to="/login">Login</Link></li>
+					<li style={props.loggedIn ? styles.hidden : {}}><Link to="/register">Register</Link></li>
 					<li style={!props.loggedIn ? styles.hidden : {}}><a href="#" onClick={props.onLogout}>Logout</a>
 					</li>
 				</ul>

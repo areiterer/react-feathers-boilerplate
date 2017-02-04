@@ -74,3 +74,24 @@ export function logout() {
 		})
 	}
 }
+
+export function register(email, password) {
+	return (dispatch) => {
+		dispatch(setSendingRequest(true));
+
+		// TODO: Error handling (email, password === undefined)
+		const userService = app.service('users');
+		userService.create({
+				email,
+				password
+			})
+			.then((response) => {
+				dispatch(setSendingRequest(false));
+				forwardTo('/login');
+			})
+			.catch((error) => {
+				//TODO: better! (set a error message box somewhere)
+				console.log('ERROR: ' + error);
+			});
+	}
+}

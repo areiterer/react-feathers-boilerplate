@@ -15,15 +15,8 @@ const LoginPage = (props) => (
 );
 
 LoginPage.propTypes = {
-	loggedIn: PropTypes.bool.isRequired,
 	login: PropTypes.func.isRequired
 };
-
-function mapStateToProps(state) {
-	return {
-		loggedIn: state.loggedIn
-	}
-}
 
 const mapDispatchToProps = (dispatch) => {
 	return {
@@ -34,4 +27,4 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export { LoginPage };
-export const LoginPageContainer = connect(mapStateToProps, mapDispatchToProps)(LoginPage);
+export const LoginPageContainer = connect(null, mapDispatchToProps)(LoginPage);

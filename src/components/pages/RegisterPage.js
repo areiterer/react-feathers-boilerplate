@@ -1,38 +1,31 @@
-import React, {Component} from 'react';
-
+import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
 import RegisterForm from '../RegisterForm';
 
-import {app} from '../../lib/WebApi';
-
-class RegisterPage extends Component {
-	constructor(props) {
-		super(props);
-
-		this._onRegistration = this._onRegistration.bind(this);
-	}
-
-	_onRegistration(email, password) {
-		const userService = app.service('users');
-		userService.create({
-			email,
-			password
-		}).then((response) => console.log(response));
+import * as actions from '../../actions/actions';
 
 
-		console.log('Registered: ' + JSON.stringify({email, password}));
-	}
-
-	render() {
-		return (
-			<div className="container">
-				<div className="row">
-					<div className="col-xs-offset-4 col-xs-4">
-						<RegisterForm onRegister={this._onRegistration} />
-					</div>
-				</div>
+const RegisterPage = (props) => (
+	<div className="container">
+		<div className="row">
+			<div className="col-xs-offset-4 col-xs-4">
+				<RegisterForm onRegister={props.register}/>
 			</div>
-		);
-	}
-}
+		</div>
+	</div>
+);
 
-export default RegisterPage;
+RegisterPage.propTypes = {
+	register: PropTypes.func.isRequired
+};
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		register: (email, password) => {
+			dispatch(actions.register(email, password));
+		}
+	}
+};
+
+export { RegisterPage };
+export const RegisterPageContainer = connect(null, mapDispatchToProps)(RegisterPage);
