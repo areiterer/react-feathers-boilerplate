@@ -1,4 +1,5 @@
 import { browserHistory } from 'react-router';
+import { NotificationManager } from 'react-notifications';
 
 import * as t from './actionTypes';
 import { app } from '../lib/WebApi';
@@ -38,7 +39,10 @@ export function login(email, password) {
 	return (dispatch) => {
 		dispatch(setSendingRequest(true));
 
-		// TODO: Error handling (email, password === undefined)
+		if (anyElementsEmpty({ email, password })) {
+			dispatch(setSendingRequest(false));
+			NotificationManager.error('Please provide username and password', 'Sign in');
+		}
 
 		app.authenticate({
 			type: 'local',
@@ -48,10 +52,12 @@ export function login(email, password) {
 			dispatch(setSendingRequest(false));
 			dispatch(setLoginState(true));
 
+			NotificationManager.success('You have been successfully signed in.', 'Sign in');
+
 			forwardTo('/articles');
 		}).catch((error) => {
-			//TODO: better! (set a error message box somewhere)
-			console.log('ERROR: ' + error);
+			dispatch(setSendingRequest(false));
+			NotificationManager.error(error.message, 'Sign in unsuccessful');
 		});
 	}
 }
@@ -67,19 +73,35 @@ export function logout() {
 			dispatch(setSendingRequest(false));
 			dispatch(setLoginState(false));
 
+			NotificationManager.success('You have been successfully logged out.', 'Logout successful');
+
 			forwardTo('/');
 		}).catch((error) => {
-			//TODO: better! (set a error message box somewhere)
-			console.log('ERROR: ' + error);
+			dispatch(setSendingRequest(false));
+			NotificationManager.error(error.message, 'Logout failed');
 		})
 	}
 }
 
-export function register(email, password) {
+/*
+ * Sign up a new user and forward to /login
+ */
+export function register(email, password, confirmPassword) {
 	return (dispatch) => {
 		dispatch(setSendingRequest(true));
 
-		// TODO: Error handling (email, password === undefined)
+		if (anyElementsEmpty({ email, password, confirmPassword })) {
+			dispatch(setSendingRequest(false));
+			NotificationManager.error('Please provide all mandatory information.', 'Sign up');
+			return;
+		}
+
+		if (password !== confirmPassword) {
+			dispatch(setSendingRequest(false));
+			NotificationManager.error('Password and confirmation do not match.', 'Sign up');
+			return;
+		}
+
 		const userService = app.service('users');
 		userService.create({
 				email,
@@ -87,11 +109,23 @@ export function register(email, password) {
 			})
 			.then((response) => {
 				dispatch(setSendingRequest(false));
+
+				NotificationManager.info('Please sign in first');
+
 				forwardTo('/login');
 			})
 			.catch((error) => {
-				//TODO: better! (set a error message box somewhere)
-				console.log('ERROR: ' + error);
+				dispatch(setSendingRequest(false));
+				NotificationManager.error(error.message, 'Sign up unsuccessful');
 			});
 	}
+}
+
+function anyElementsEmpty(elements) {
+	for (let element in elements) {
+		if (!elements[element]) {
+			return true;
+		}
+	}
+	return false;
 }

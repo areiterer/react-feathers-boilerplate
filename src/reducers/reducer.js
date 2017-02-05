@@ -8,7 +8,7 @@ const initialState = {
 export default function (state = initialState, action) {
 	switch (action.type) {
 		case t.SENDING_REQUEST:
-			return Object.assign({}, state, { currentlySending: true });
+			return Object.assign({}, state, { currentlySending: action.isSending });
 		case t.SET_LOGIN_STATE:
 			return Object.assign({}, state, { loggedIn: action.loginState });
 		default:

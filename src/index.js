@@ -17,7 +17,8 @@ import ArticlesPage from './components/pages/ArticlesPage';
 
 import EnsureLoggedInContainer from './components/EnsureLoggedInContainer';
 
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-notifications/lib/notifications.css';
 import './index.css';
 
 let loggerMiddleware = createLogger();

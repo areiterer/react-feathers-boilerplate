@@ -21,10 +21,7 @@ class RegisterForm extends Component {
 	}
 
 	_handleSubmit(event) {
-		// TODO: check password and confirm password
-
-		this.props.onRegister(this.state.email, this.state.password);
-
+		this.props.onRegister(this.state.email, this.state.password, this.state.confirmPassword);
 		event.preventDefault();
 	}
 
