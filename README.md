@@ -1,14 +1,19 @@
-# react-auth-demo
+# react-feathers-boilerplate
 
-This is a small demo application which is the frontend to my [feathers-demo](https://github.com/areiterer/feathers-demo) project.
+This is a boilerplate for a simple frontend which can be connected to a [FeathersJS](http://feathersjs.com/)-Backend.
+
+# What's in it?
+* [x] Login / Logout
+* [x] Registration
+* [x] State management by [redux](http://redux.js.org/)
+* [x] Notifications with [react-notifications](https://github.com/minhtranite/react-notifications)
+* [x] Restricted routes based on authentication state
+* [x] Sample Route/Component (Restricted to authenticated users)
+* [ ] To be continued...
  
 # Agenda / Roadmap
-
-* [ ] A user should be able to sign up with email/password
-* [x] A user should be able to login/logout
-* [x] Some content of the page should only be visible for logged in users (This is the /article route)
-* [ ] Users with the "editor" role should be able to add new articles while other users should not be able to do so.
-* [ ] To be continued...
+* [ ] Find a way to simplify / centralize and improve the configuration for the frontend. At the moment everything is 
+spread over the app and there is no central configuration file.
 
 # Contribution
 All kinds of contribution are welcome. If you have ideas or found some errors or bad design, please add an issue or 
