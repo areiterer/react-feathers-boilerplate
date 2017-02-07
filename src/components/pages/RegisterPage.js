@@ -21,8 +21,8 @@ RegisterPage.propTypes = {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		register: (email, password) => {
-			dispatch(actions.register(email, password));
+		register: (email, password, confirmPassword) => {
+			dispatch(actions.register(email, password, confirmPassword));
 		}
 	}
 };
