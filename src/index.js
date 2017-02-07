@@ -21,6 +21,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-notifications/lib/notifications.css';
 import './index.css';
 
+const NotFound = () => (
+	<h1>404.. This page is not found!</h1>)
+
 let loggerMiddleware = createLogger();
 
 let store = createStore(
@@ -41,8 +44,11 @@ ReactDOM.render(
 				<Route component={EnsureLoggedInContainer}>
 					<Route path="articles" component={ArticlesPage}/>
 				</Route>
+				<Route path="*" component={NotFound} />
 			</Route>
 		</Router>
 	</Provider>,
 	document.getElementById('root')
 );
+
+// TODO: Not found route!
