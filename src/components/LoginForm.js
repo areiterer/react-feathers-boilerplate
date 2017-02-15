@@ -56,6 +56,7 @@ class LoginForm extends Component {
 
 LoginForm.propTypes = {
 	onLogin: PropTypes.func.isRequired,
+	action: PropTypes.string
 };
 
 export default LoginForm;

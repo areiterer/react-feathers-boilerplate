@@ -39,7 +39,7 @@ ReactDOM.render(
 		<Router history={browserHistory}>
 			<Route path="/" component={ AppContainer }>
 				<IndexRoute component={IndexPage}/>
-				<Route path="login" component={LoginPageContainer}/>
+				<Route path="login(/:action(/:slug))" component={LoginPageContainer} canNavigate={false}  />
 				<Route path="register" component={RegisterPageContainer}/>
 				<Route component={EnsureLoggedInContainer}>
 					<Route path="articles" component={ArticlesPage}/>

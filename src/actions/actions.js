@@ -48,10 +48,22 @@ export function login(email, password) {
 			type: 'local',
 			email,
 			password
-		}).then(() => {
+		}).then((result) => {
 			dispatch(setSendingRequest(false));
-			dispatch(setLoginState(true));
 
+			const user = result.data;
+			if (!user) {
+				app.logout();
+				NotificationManager.error('Something went wrong, please try again', 'Sign in');
+				return;
+			}
+			if (!user.isVerified) {
+				app.logout();
+				forwardTo('/login/pendingVerification/' + email);
+				return;
+			}
+
+			dispatch(setLoginState(true));
 			NotificationManager.success('You have been successfully signed in.', 'Sign in');
 
 			forwardTo('/articles');
@@ -110,14 +122,68 @@ export function register(email, password, confirmPassword) {
 			.then((response) => {
 				dispatch(setSendingRequest(false));
 
-				NotificationManager.info('Please sign in first');
+				NotificationManager.info('Thanks for the registration. We sent a mail to verify your email address', 'Success!', 5000);
 
-				forwardTo('/login');
+				forwardTo('/');
 			})
 			.catch((error) => {
 				dispatch(setSendingRequest(false));
 				NotificationManager.error(error.message, 'Sign up unsuccessful');
 			});
+	}
+}
+
+export function verifyEmail(slug) {
+	return (dispatch) => {
+		dispatch(setSendingRequest(true));
+
+		if (!slug) {
+			dispatch(setSendingRequest(false));
+			NotificationManager.error('Please provide all mandatory information.', 'Verification');
+			return;
+		}
+
+		const authManagement = app.service('authManagement');
+		authManagement.create({
+				action: 'verifySignupLong',
+				value: slug
+			})
+			.then((response) => {
+				dispatch(setSendingRequest(false));
+				console.log('the response: ' + JSON.stringify(response));
+				NotificationManager.info('Your email was successfully verified.');
+			})
+			.catch((error) => {
+				dispatch(setSendingRequest(false));
+				NotificationManager.error(error.message, 'Verification unsuccessful');
+			});
+	}
+}
+
+export function resendVerificationMail(email) {
+	return (dispatch) => {
+		dispatch(setSendingRequest(true));
+
+		if (!email) {
+			dispatch(setSendingRequest(false));
+			NotificationManager.error('Please provide all mandatory information.', 'Verification');
+			return;
+		}
+
+		const authManagement = app.service('authManagement');
+		console.log(JSON.stringify({ email }));
+		authManagement.create({
+			action: 'resendVerifySignup',
+			value: { email },
+			notifierOptions: {}
+		}).then((response) => {
+			dispatch(setSendingRequest(false));
+			NotificationManager.info('A new verification mail was sent.');
+			forwardTo('/');
+		}).catch((error) => {
+			dispatch(setSendingRequest(false));
+			NotificationManager.error(error.message, 'Something went wrong, please try again.');
+		})
 	}
 }
 
