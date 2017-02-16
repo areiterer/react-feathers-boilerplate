@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { browserHistory } from 'react-router';
 import { NotificationContainer } from 'react-notifications';
+import Spinner from 'react-spinkit';
 
 import { connect } from 'react-redux';
 import * as actions from './actions/actions';
@@ -30,6 +31,11 @@ class App extends Component {
 					loggedIn={this.props.loggedIn}
 					onLogout={this.props.logout}
 				/>
+				{
+					this.props.currentlySending
+					? <Spinner spinnerName='three-bounce' />
+					: null
+				}
 				{this.props.children}
 				<NotificationContainer/>
 			</div>
@@ -40,13 +46,15 @@ class App extends Component {
 
 App.propTypes = {
 	loggedIn: PropTypes.bool.isRequired,
+	currentlySending: PropTypes.bool.isRequired,
 	logout: PropTypes.func.isRequired,
 	setLoginState: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => {
 	return {
-		loggedIn: state.loggedIn
+		loggedIn: state.loggedIn,
+		currentlySending: state.currentlySending
 	}
 };
 
