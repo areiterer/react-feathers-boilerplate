@@ -28,10 +28,10 @@ const Header = (props) => (
 			</Nav>
 			<Nav pullRight>
 				<LinkContainer style={props.loggedIn ? styles.hidden : {}} to="/login">
-					<NavItem eventKey={1}>Login</NavItem>
+					<NavItem eventKey={1}>Sign in</NavItem>
 				</LinkContainer>
 				<LinkContainer style={props.loggedIn ? styles.hidden : {}} to="/register">
-					<NavItem eventKey={2}>Register</NavItem>
+					<NavItem eventKey={2}>Sign up</NavItem>
 				</LinkContainer>
 				<NavItem onClick={props.onLogout} eventKey={3} style={!props.loggedIn ? styles.hidden : {}}>Logout</NavItem>
 			</Nav>

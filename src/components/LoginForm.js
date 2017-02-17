@@ -25,32 +25,10 @@ class LoginForm extends Component {
 			})
 	}
 
-	/*
-	 <form className="form-signin" onSubmit={this._handleLogin}>
-	 <h2 className="form-signin-heading">Sign in</h2>
-	 <div className="form-group">
-	 <label htmlFor="inputEmail" className="sr-only">Email address</label>
-	 <input type="email" id="inputEmail" className="form-control"
-	 placeholder="Email address" name="email"
-	 value={this.state.email} onChange={this._handleChange}
-	 required autoFocus/>
-	 </div>
-	 <div className="form-group">
-	 <label htmlFor="inputPassword" className="sr-only">Password</label>
-	 <input type="password" id="inputPassword" className="form-control"
-	 placeholder="Password" name="password"
-	 value={this.state.password} onChange={this._handleChange}
-	 required/>
-	 </div>
-	 <button className="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-	 </form>
-	 */
-
-
 	render() {
 		return (
 			<form onSubmit={this._handleLogin}>
-				<h2>Sign up</h2>
+				<h2>Sign in</h2>
 				<FormGroup
 					controlId="emailControl">
 					<ControlLabel srOnly>Email address</ControlLabel>
@@ -59,7 +37,8 @@ class LoginForm extends Component {
 						value={this.state.email}
 						onChange={this._handleChange}
 						placeholder="Email address"
-						name="email" />
+						name="email"
+						required autoFocus />
 				</FormGroup>
 				<FormGroup
 					controlId="passwordControl">

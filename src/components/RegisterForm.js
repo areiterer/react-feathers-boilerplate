@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { FormGroup, FormControl, ControlLabel, Button } from 'react-bootstrap';
 
 class RegisterForm extends Component {
 	constructor(props) {
@@ -28,29 +29,42 @@ class RegisterForm extends Component {
 	render() {
 		return (
 			<form id="register-form" onSubmit={this._handleSubmit}>
-				<h2>Registration</h2>
-				<div className="form-group">
-					<label htmlFor="inputEmail" className="sr-only">Email address</label>
-					<input type="email" id="inputEmail" name="email"
-					       className="form-control" placeholder="Email address"
-					       value={this.state.email} onChange={this._handleChange}
-					       required autoFocus/>
-				</div>
-				<div className="form-group">
-					<label htmlFor="inputPassword" className="sr-only">Password</label>
-					<input type="password" id="inputPassword" name="password"
-					       className="form-control" placeholder="Password"
-					       value={this.state.password} onChange={this._handleChange}
-					       required/>
-				</div>
-				<div className="form-group">
-					<label htmlFor="inputConfirmPassword" className="sr-only">Confirm Password</label>
-					<input type="password" id="inputConfirmPassword" name="confirmPassword"
-					       className="form-control" placeholder="Confirm Password"
-					       value={this.state.confirmPassword} onChange={this._handleChange}
-					       required/>
-				</div>
-				<button className="btn btn-lg btn-success btn-block" type="submit">Register</button>
+				<h2>Sign up</h2>
+				<FormGroup
+					controlId="emailControl">
+					<ControlLabel srOnly>Email address</ControlLabel>
+					<FormControl
+						type="email"
+						value={this.state.email}
+						onChange={this._handleChange}
+						placeholder="Email address"
+						name="email"
+						required autoFocus />
+				</FormGroup>
+				<FormGroup
+					controlId="passwordControl">
+					<ControlLabel srOnly>Password</ControlLabel>
+					<FormControl
+						type="password"
+						value={this.state.password}
+						onChange={this._handleChange}
+						placeholder="Password"
+						name="password"
+						required />
+				</FormGroup>
+				<FormGroup
+					controlId="confirmPasswordControl">
+					<ControlLabel srOnly>Confirm password</ControlLabel>
+					<FormControl
+						type="password"
+						value={this.state.confirmPassword}
+						onChange={this._handleChange}
+						placeholder="Confirm password"
+						name="confirmPassword"
+						required />
+				</FormGroup>
+
+				<Button type="submit" bsStyle="primary" block>Sign up</Button>
 			</form>
 		);
 	}

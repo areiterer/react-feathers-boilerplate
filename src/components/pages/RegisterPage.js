@@ -1,18 +1,20 @@
 import React, { PropTypes } from 'react';
+import {Grid, Row, Col} from 'react-bootstrap';
 import { connect } from 'react-redux';
+
 import RegisterForm from '../RegisterForm';
 
 import * as actions from '../../actions/actions';
 
 
 const RegisterPage = (props) => (
-	<div className="container">
-		<div className="row">
-			<div className="col-xs-offset-4 col-xs-4">
+	<Grid>
+		<Row>
+			<Col xs={8} xsOffset={2} sm={6} smOffset={3} md={4} mdOffset={4} lg={4} lgOffset={4}>
 				<RegisterForm onRegister={props.register}/>
-			</div>
-		</div>
-	</div>
+			</Col>
+		</Row>
+	</Grid>
 );
 
 RegisterPage.propTypes = {

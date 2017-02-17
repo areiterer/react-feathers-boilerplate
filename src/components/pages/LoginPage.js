@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import {Grid, Row, Col} from 'react-bootstrap';
 import { connect } from 'react-redux';
 
 import LoginForm from '../LoginForm';
@@ -17,9 +18,9 @@ class LoginPage extends Component {
 
   render() {
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col-xs-offset-4 col-xs-4">
+      <Grid>
+        <Row>
+          <Col xs={8} xsOffset={2} sm={6} smOffset={3} md={4} mdOffset={4} lg={4} lgOffset={4}>
             {
               this.props.params.action === 'pendingVerification'
                 ? <ResendVerificationForm email={this.props.params.slug}
@@ -28,9 +29,9 @@ class LoginPage extends Component {
                   ? <LoginForm onLogin={this.props.login}/>
                   : <h2>You are already logged in.</h2>
             }
-          </div>
-        </div>
-      </div>
+          </Col>
+        </Row>
+      </Grid>
     );
   }
 }
