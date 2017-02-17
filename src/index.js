@@ -17,12 +17,11 @@ import ArticlesPage from './components/pages/ArticlesPage';
 
 import EnsureLoggedInContainer from './components/EnsureLoggedInContainer';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-notifications/lib/notifications.css';
 import './index.css';
 
 const NotFound = () => (
-	<h1>404.. This page is not found!</h1>)
+	<h1>404.. This page is not found!</h1>);
 
 let loggerMiddleware = createLogger();
 
