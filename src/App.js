@@ -17,10 +17,9 @@ class App extends Component {
 				this.props.setLoginState(true)
 			)
 			.catch(error => {
-				console.error("Authentication Error: " + JSON.stringify(error));
-
-				if (error.code === 401) {
-					// Do nothing if user is not authenticated yet.
+				if (error.code !== 401) {
+					// Do nothing if user is not authenticated, but log every other error.
+					console.error("Authentication Error: " + JSON.stringify(error));
 					//browserHistory.replace('/login');
 				}
 			})
