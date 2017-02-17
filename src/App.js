@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import { browserHistory } from 'react-router';
 import { NotificationContainer } from 'react-notifications';
 import Spinner from 'react-spinkit';
 
@@ -18,8 +17,11 @@ class App extends Component {
 				this.props.setLoginState(true)
 			)
 			.catch(error => {
+				console.error("Authentication Error: " + JSON.stringify(error));
+
 				if (error.code === 401) {
-					browserHistory.replace('/login');
+					// Do nothing if user is not authenticated yet.
+					//browserHistory.replace('/login');
 				}
 			})
 	}
